@@ -1,7 +1,69 @@
-.example-container {
+.drawer-container {
   height: 100vh;
 }
 
+.toolbar {
+  height: 72px;
+  min-height: 72px;
+}
+
+.sidenav {
+  width: 300px;
+}
+
 .menu-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
+  width: 65px;
+  height: 65px;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 20px;
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.25);
+
+  img {
+    width: 57px;
+    height: 97%;
+  }
+
+  p {
+    font-size: 1.5rem;
+  }
+}
+
+ul {
+  width: 100%;
+  padding: 0;
+
+  li {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(0, 0, 0, 0.09);
+    }
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+  }
+}
+
+.router-container {
+  padding: 30px 0 0 30px;
 }
