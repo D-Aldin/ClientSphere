@@ -1,0 +1,42 @@
+.dialog-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 20px;
+
+  h2 p {
+    padding: 0px;
+  }
+
+  td {
+    padding-right: 15px;
+  }
+}
+
+.dialog-buttons {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  gap: 10px;
+}
+
+.city-state {
+  width: 100%;
+  display: flex;
+
+  tr {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+}
+
+td textarea {
+  padding-right: 10px;
+}
