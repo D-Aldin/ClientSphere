@@ -8,6 +8,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { User } from '../../models/user.class';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, addDoc } from 'firebase/firestore';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -19,6 +20,7 @@ import { collection, addDoc } from 'firebase/firestore';
     MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
+    MatProgressBarModule,
   ],
   templateUrl: './dialog-add-user.component.html',
   styleUrl: './dialog-add-user.component.scss',
