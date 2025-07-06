@@ -9,20 +9,27 @@
 <form class="user-dialog-form">
 
 
-  <table class="example-full-width" cellspacing="0"><tr>
-    <td><mat-form-field class="example-full-width">
-      <mat-label>First name</mat-label>
-      <input matInput>
-    </mat-form-field></td>
-    <td><mat-form-field class="example-full-width">
-      <mat-label>Last Name</mat-label>
-      <input matInput>
-    </mat-form-field></td>
-  </tr></table>
+<table class="example-full-width" cellspacing="0">
+  <tr class="name-input-fields">
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>First Name</mat-label>
+        <input matInput name="firstName" [(ngModel)]="user.firstName" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+    </td>
+    <td>
+      <mat-form-field class="example-full-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput name="lastName" [(ngModel)]="user.lastName" [ngModelOptions]="{standalone: true}">
+      </mat-form-field>
+    </td>
+  </tr>
+</table>
+
 
 <mat-form-field>
   <mat-label>Choose a date</mat-label>
-  <input matInput [matDatepicker]="picker">
+  <input [(ngModel)]="user.birthday" matInput [matDatepicker]="picker" [ngModelOptions]="{standalone: true}">
   <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
@@ -30,12 +37,12 @@
 
   <p class="address">
     <mat-form-field class="example-full-width">
-      <mat-label>Address</mat-label>
-      <textarea matInput placeholder="Ex. 100 Main St"></textarea>
+      <mat-label >Address</mat-label>
+      <textarea [(ngModel)]="user.adress" matInput placeholder="Ex. Carl-Benz-Str." [ngModelOptions]="{standalone: true}"></textarea>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <mat-label>Address 2</mat-label>
-      <textarea matInput></textarea>
+      <mat-label >Address 2</mat-label>
+      <textarea [(ngModel)]="user.adress2"  matInput [ngModelOptions]="{standalone: true}"></textarea>
     </mat-form-field>
   </p>
 
@@ -43,15 +50,15 @@
       <table class="example-full-width city-state" cellspacing="0"><tr>
     <td><mat-form-field class="example-full-width">
       <mat-label>City</mat-label>
-      <input matInput placeholder="Ex. San Francisco">
+      <input [(ngModel)]="user.city" matInput placeholder="Ex. Frankfurt am Main" [ngModelOptions]="{standalone: true}">
     </mat-form-field></td>
     <td><mat-form-field class="example-full-width">
       <mat-label>State</mat-label>
-      <input matInput placeholder="Ex. California">
+      <input [(ngModel)]="user.state" matInput placeholder="Ex. Hessen" [ngModelOptions]="{standalone: true}">
     </mat-form-field></td>
     <td><mat-form-field class="example-full-width">
       <mat-label>Postal Code</mat-label>
-      <input matInput #postalCode maxlength="5" placeholder="Ex. 94105" value="">
+      <input [(ngModel)]="user.postalCode" matInput #postalCode maxlength="5" placeholder="Ex. 60314" value="" [ngModelOptions]="{standalone: true}">
       <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
     </mat-form-field></td>
   </tr></table>
@@ -62,7 +69,7 @@
 
 <mat-dialog-actions class="dialog-buttons">
    <button matButton >Cancel</button>
-   <button matButton [mat-dialog-close]="" cdkFocusInitial>Save</button>
+   <button (click)="saveUser()" matButton [mat-dialog-close]="" cdkFocusInitial>Save</button>
 </mat-dialog-actions>
 
 </div>

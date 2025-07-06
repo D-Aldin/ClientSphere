@@ -7,10 +7,11 @@
   h2 p {
     padding: 0px;
   }
+}
 
-  td {
-    padding-right: 15px;
-  }
+.name-input-fileds {
+  display: flex;
+  justify-content: space-between;
 }
 
 .dialog-buttons {
@@ -39,4 +40,20 @@
 
 td textarea {
   padding-right: 10px;
+}
+
+table {
+  width: 100%;
+
+  tr {
+    width: 100%;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.name-input-fileds {
+  color: cyan;
 }
