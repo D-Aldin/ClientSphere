@@ -1,4 +1,7 @@
-<mat-progress-bar class="progress-bar" mode="indeterminate"></mat-progress-bar>
+@if(this.loading) {
+    <mat-progress-bar  class="progress-bar" mode="indeterminate"></mat-progress-bar>
+}
+
 <div class="dialog-wrapper">
    
     <h2 mat-dialog-title>Add User</h2>
@@ -10,13 +13,13 @@
                 <td>
                     <mat-form-field class="example-full-width">
                         <mat-label>First Name</mat-label>
-                        <input matInput name="firstName" [(ngModel)]="user.firstName" [ngModelOptions]="{standalone: true}" />
+                        <input [disabled]="loading" matInput name="firstName" [(ngModel)]="user.firstName" [ngModelOptions]="{standalone: true}" />
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field class="example-full-width">
                         <mat-label>Last Name</mat-label>
-                        <input matInput name="lastName" [(ngModel)]="user.lastName" [ngModelOptions]="{standalone: true}" />
+                        <input [disabled]="loading" matInput name="lastName" [(ngModel)]="user.lastName" [ngModelOptions]="{standalone: true}" />
                     </mat-form-field>
                 </td>
             </tr>
@@ -24,7 +27,7 @@
 
         <mat-form-field>
             <mat-label>Choose a date</mat-label>
-            <input [(ngModel)]="user.birthday" matInput [matDatepicker]="picker" [ngModelOptions]="{standalone: true}" />
+            <input [disabled]="loading" [(ngModel)]="user.birthday" matInput [matDatepicker]="picker" [ngModelOptions]="{standalone: true}" />
             <!-- <mat-hint>MM/DD/YYYY</mat-hint> -->
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
@@ -33,12 +36,9 @@
         <p class="address">
             <mat-form-field class="example-full-width">
                 <mat-label>Address</mat-label>
-                <textarea [(ngModel)]="user.adress" matInput placeholder="Ex. Carl-Benz-Str." [ngModelOptions]="{standalone: true}"></textarea>
+                <textarea [disabled]="loading" [(ngModel)]="user.adress" matInput placeholder="Ex. Carl-Benz-Str." [ngModelOptions]="{standalone: true}"></textarea>
             </mat-form-field>
-            <mat-form-field class="example-full-width">
-                <mat-label>Address 2</mat-label>
-                <textarea [(ngModel)]="user.adress2" matInput [ngModelOptions]="{standalone: true}"></textarea>
-            </mat-form-field>
+            
         </p>
 
         <table class="example-full-width city-state" cellspacing="0">
@@ -46,28 +46,41 @@
                 <td>
                     <mat-form-field class="example-full-width">
                         <mat-label>City</mat-label>
-                        <input [(ngModel)]="user.city" matInput placeholder="Ex. Frankfurt am Main" [ngModelOptions]="{standalone: true}" />
+                        <input [disabled]="loading" [(ngModel)]="user.city" matInput placeholder="Ex. Frankfurt am Main" [ngModelOptions]="{standalone: true}" />
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field class="example-full-width">
                         <mat-label>State</mat-label>
-                        <input [(ngModel)]="user.state" matInput placeholder="Ex. Hessen" [ngModelOptions]="{standalone: true}" />
+                        <input [disabled]="loading" [(ngModel)]="user.state" matInput placeholder="Ex. Hessen" [ngModelOptions]="{standalone: true}" />
                     </mat-form-field>
                 </td>
                 <td>
                     <mat-form-field class="example-full-width">
                         <mat-label>Postal Code</mat-label>
-                        <input [(ngModel)]="user.postalCode" matInput #postalCode maxlength="5" placeholder="Ex. 60314" value="" [ngModelOptions]="{standalone: true}" />
+                        <input [disabled]="loading" [(ngModel)]="user.postalCode" matInput #postalCode maxlength="5" placeholder="Ex. 60314" value="" [ngModelOptions]="{standalone: true}" />
                         <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
                     </mat-form-field>
                 </td>
             </tr>
         </table>
+        <form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input [(ngModel)]="user.email" type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com">
+    @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+      <mat-error>Please enter a valid email address</mat-error>
+    }
+    @if (emailFormControl.hasError('required')) {
+      <mat-error>Email is <strong>required</strong></mat-error>
+    }
+  </mat-form-field>
+</form>
+        
     </form>
 
     <mat-dialog-actions class="dialog-buttons">
-        <button matButton>Cancel</button>
-        <button (click)="saveUser()" matButton [mat-dialog-close]="" cdkFocusInitial>Save</button>
+        <button [disabled]="loading" [mat-dialog-close]="" matButton>Cancel</button>
+        <button [disabled]="loading" (click)="saveUser()" matButton  cdkFocusInitial>Save</button>
     </mat-dialog-actions>
 </div>

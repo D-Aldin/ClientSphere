@@ -9,6 +9,10 @@ import { User } from '../../models/user.class';
 import { Firestore } from '@angular/fire/firestore';
 import { collection, addDoc } from 'firebase/firestore';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogClose } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
+
+import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -21,20 +25,29 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatInputModule,
     MatDatepickerModule,
     MatProgressBarModule,
+    MatDialogClose,
+    ReactiveFormsModule,
   ],
   templateUrl: './dialog-add-user.component.html',
   styleUrl: './dialog-add-user.component.scss',
 })
 export class DialogAddUserComponent {
+  emailFormControl = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
   private firestore = inject(Firestore);
   user: User = new User({});
   birthDate: Date = new Date();
+  loading: boolean = false;
+  readonly dialogRef = inject(MatDialogRef<DialogAddUserComponent>);
 
   constructor() {}
 
   async saveUser() {
     this.user.birthday = this.birthDate.getTime();
     console.log('User saved:', this.user);
+    this.loading = true;
     try {
       const docRef = await addDoc(
         collection(this.firestore, 'user'),
@@ -44,5 +57,7 @@ export class DialogAddUserComponent {
     } catch (error) {
       console.error('Error adding user:', error);
     }
+    this.loading = false;
+    this.dialogRef.close();
   }
 }

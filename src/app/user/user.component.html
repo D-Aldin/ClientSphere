@@ -1,3 +1,31 @@
 <button (click)="openDialog()" matFab  class="add-icon" matTooltip="Add User" matTooltipPosition="above">
   <mat-icon>add</mat-icon>
 </button>
+<div class="card-container">
+  <mat-card appearance="outlined">
+  <mat-card-header>
+    <table>
+      <tr>
+        <td>Name</td>
+        <td>Adress</td>
+        <td>City</td>
+        <td>Email</td>
+      </tr>
+      
+ 
+      <tr *ngFor="let user of users$ | async">
+        <td>{{ user.firstName }}</td>
+        <td>{{ user.lastName }}</td>
+        <td>{{ user.city }}</td>
+        <td>{{ user.email }}</td>
+      </tr>
+    
+
+
+ 
+    </table>
+  </mat-card-header>
+  <mat-card-actions align="end"></mat-card-actions>
+</mat-card>
+
+</div>
