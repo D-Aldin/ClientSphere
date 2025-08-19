@@ -13,9 +13,9 @@
       </tr>
       
  
-      <tr *ngFor="let user of users$ | async">
-        <td>{{ user.firstName }}</td>
-        <td>{{ user.lastName }}</td>
+      <tr *ngFor="let user of users$ | async" [routerLink] = "['/user/', user.id]">
+        <td>{{ user.firstName }} {{ user.lastName }}</td>
+        <td>{{ user.adress }}</td>
         <td>{{ user.city }}</td>
         <td>{{ user.email }}</td>
       </tr>

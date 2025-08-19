@@ -1,0 +1,43 @@
+mat-card:first-child {
+  background-color: rgba(0, 255, 255, 0.26);
+  height: 200px;
+}
+
+mat-card-header:first-child {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column-reverse;
+
+  img {
+    width: 75px;
+    height: 75px;
+    padding-bottom: 10px;
+  }
+}
+
+mat-card {
+  margin-top: 20px;
+}
+
+.edit-btn {
+  position: absolute;
+  padding: 10px;
+  top: 0;
+  right: 0;
+
+  button {
+    background-image: url("./../../assets/icon/dots.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    background-position: center;
+    border: none;
+    width: 15px;
+    height: 32px;
+    cursor: pointer;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

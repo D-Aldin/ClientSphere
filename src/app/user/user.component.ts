@@ -9,18 +9,14 @@ import { Firestore } from '@angular/fire/firestore';
 import { collection, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-
+import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { User } from '../../models/user.class';
+import { UserProfile } from '../shared/interfaces/UserProfile';
 
-export interface UserProfile {
-  firstName: string;
-  lastName: string;
-  birthday: number;
-  adress: string;
-  city: string;
-  state: string;
-  postalCode: number;
-  email: string;
+export interface UserProfileId {
+  id: string;
+  users$: Observable<UserProfile>;
 }
 
 @Component({
@@ -33,6 +29,7 @@ export interface UserProfile {
     MatCardModule,
     AsyncPipe,
     CommonModule,
+    RouterLink,
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
@@ -44,9 +41,9 @@ export class UserComponent {
 
   constructor() {
     const userData = collection(this.firestore, 'user');
-    console.log(userData);
-
-    this.users$ = collectionData(userData) as Observable<UserProfile[]>;
+    this.users$ = collectionData(userData, { idField: 'id' }) as Observable<
+      UserProfile[]
+    >;
   }
 
   openDialog(): void {
